@@ -1,0 +1,1145 @@
+{
+	"info": {
+		"_postman_id": "ee89f150-66cd-4cd1-8179-754428663d54",
+		"name": "Testy Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24087297",
+		"_collection_link": "https://speeding-firefly-509143.postman.co/workspace/COLT-1%252F2023---Trello-~fbdea5a7-d02e-4ba6-8dc2-3c9349ee4829/collection/24087297-ee89f150-66cd-4cd1-8179-754428663d54?action=share&creator=24087297&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "BOARDS",
+			"item": [
+				{
+					"name": "Create a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"boardId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/?name=Tablica do testów&key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Tablica do testów"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Board with random name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"boardId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/?name={{$randomWord}}&key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{$randomWord}}"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"6429c4502465979b2b0ce9c3\",\r\n    \"name\": \"Testowa tablica 2\",\r\n    \"desc\": \"\",\r\n    \"descData\": null,\r\n    \"closed\": false,\r\n    \"idOrganization\": \"641dd0f949f2f4270b87cead\",\r\n    \"idEnterprise\": null,\r\n    \"pinned\": false,\r\n    \"url\": \"https://trello.com/b/x2b7Fp4P/testowa-tablica-1\",\r\n    \"shortUrl\": \"https://trello.com/b/x2b7Fp4P\",\r\n    \"prefs\": {\r\n        \"permissionLevel\": \"org\",\r\n        \"hideVotes\": false,\r\n        \"voting\": \"disabled\",\r\n        \"comments\": \"members\",\r\n        \"invitations\": \"members\",\r\n        \"selfJoin\": true,\r\n        \"cardCovers\": true,\r\n        \"isTemplate\": false,\r\n        \"cardAging\": \"regular\",\r\n        \"calendarFeedEnabled\": false,\r\n        \"hiddenPluginBoardButtons\": [],\r\n        \"switcherViews\": [\r\n            {\r\n                \"viewType\": \"Board\",\r\n                \"enabled\": true,\r\n                \"_id\": \"6429c4502465979b2b0ce9c4\"\r\n            },\r\n            {\r\n                \"viewType\": \"Table\",\r\n                \"enabled\": true,\r\n                \"_id\": \"6429c4502465979b2b0ce9c5\"\r\n            },\r\n            {\r\n                \"viewType\": \"Calendar\",\r\n                \"enabled\": false,\r\n                \"_id\": \"6429c4502465979b2b0ce9c6\"\r\n            },\r\n            {\r\n                \"viewType\": \"Dashboard\",\r\n                \"enabled\": false,\r\n                \"_id\": \"6429c4502465979b2b0ce9c7\"\r\n            },\r\n            {\r\n                \"viewType\": \"Timeline\",\r\n                \"enabled\": false,\r\n                \"_id\": \"6429c4502465979b2b0ce9c8\"\r\n            },\r\n            {\r\n                \"viewType\": \"Map\",\r\n                \"enabled\": false,\r\n                \"_id\": \"6429c4502465979b2b0ce9c9\"\r\n            }\r\n        ],\r\n        \"background\": \"6429b27520fe6f6bcd0362a6\",\r\n        \"backgroundColor\": null,\r\n        \"backgroundImage\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/394e68dd12f4aaeb1bf82ed630fc70be/photo-1679586491833-50f5af25e58a\",\r\n        \"backgroundImageScaled\": [\r\n            {\r\n                \"width\": 140,\r\n                \"height\": 93,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 256,\r\n                \"height\": 171,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 480,\r\n                \"height\": 320,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 960,\r\n                \"height\": 640,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 1024,\r\n                \"height\": 683,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x683/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 1280,\r\n                \"height\": 854,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x854/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 1920,\r\n                \"height\": 1280,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 2048,\r\n                \"height\": 1366,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1366/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 2400,\r\n                \"height\": 1600,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/e43b98be92ccdafde125b3ccfb53cc5e/photo-1679586491833-50f5af25e58a.jpg\"\r\n            },\r\n            {\r\n                \"width\": 2560,\r\n                \"height\": 1707,\r\n                \"url\": \"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/394e68dd12f4aaeb1bf82ed630fc70be/photo-1679586491833-50f5af25e58a\"\r\n            }\r\n        ],\r\n        \"backgroundTile\": false,\r\n        \"backgroundBrightness\": \"dark\",\r\n        \"backgroundBottomColor\": \"#573d29\",\r\n        \"backgroundTopColor\": \"#cf9061\",\r\n        \"canBePublic\": true,\r\n        \"canBeEnterprise\": true,\r\n        \"canBeOrg\": true,\r\n        \"canBePrivate\": true,\r\n        \"canInvite\": true\r\n    },\r\n    \"labelNames\": {\r\n        \"green\": \"\",\r\n        \"yellow\": \"\",\r\n        \"orange\": \"\",\r\n        \"red\": \"\",\r\n        \"purple\": \"\",\r\n        \"blue\": \"\",\r\n        \"sky\": \"\",\r\n        \"lime\": \"\",\r\n        \"pink\": \"\",\r\n        \"black\": \"\",\r\n        \"green_dark\": \"\",\r\n        \"yellow_dark\": \"\",\r\n        \"orange_dark\": \"\",\r\n        \"red_dark\": \"\",\r\n        \"purple_dark\": \"\",\r\n        \"blue_dark\": \"\",\r\n        \"sky_dark\": \"\",\r\n        \"lime_dark\": \"\",\r\n        \"pink_dark\": \"\",\r\n        \"black_dark\": \"\",\r\n        \"green_light\": \"\",\r\n        \"yellow_light\": \"\",\r\n        \"orange_light\": \"\",\r\n        \"red_light\": \"\",\r\n        \"purple_light\": \"\",\r\n        \"blue_light\": \"\",\r\n        \"sky_light\": \"\",\r\n        \"lime_light\": \"\",\r\n        \"pink_light\": \"\",\r\n        \"black_light\": \"\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/6429c4502465979b2b0ce9c3?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"6429c4502465979b2b0ce9c3"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "Testowa tablica 1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Boards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/members/me/?key={{key}}&token={{token}}&boards=all",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"members",
+								"me",
+								""
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "boards",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/6429c4502465979b2b0ce9c3?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"6429c4502465979b2b0ce9c3"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/6429c4502465979b2b0ce9c3?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"6429c4502465979b2b0ce9c3"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LISTS",
+			"item": [
+				{
+					"name": "Create a List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"listId\", jsonData.id);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/lists?name=Lista do testów&key={{key}}&token={{token}}&idBoard={{boardId}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Lista do testów"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "idBoard",
+									"value": "{{boardId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a List with random name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/lists?name={{$randomWord}}&key={{key}}&token={{token}}&idBoard=6429c4502465979b2b0ce9c3",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{$randomWord}}"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "idBoard",
+									"value": "6429c4502465979b2b0ce9c3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all the lists from the boards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/{{boardId}}/lists?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"{{boardId}}",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a one List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/lists/64440b0a170323c34fc86c25?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"64440b0a170323c34fc86c25"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"64440b0a170323c34fc86c25\",\r\n    \"name\": \"W DALSZYM CIAGU W TRAKCIEEEEEE\",\r\n    \"idBoard\": \"64440b0a170323c34fc86c1d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasicURL}}/1/lists/64440bfd06c06a8f24f4099b?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"64440bfd06c06a8f24f4099b"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(DELETE,CLOSE) Archive or unarchive a list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/lists/64440b0a170323c34fc86c26/closed?key={{key}}&token={{token}}&value=true",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"lists",
+								"64440b0a170323c34fc86c26",
+								"closed"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "value",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CARDS",
+			"item": [
+				{
+					"name": "Create a new Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{BasicURL}}/1/cards?idList=64554ab015dc5d3b31b322d3&key={{key}}&token={{token}}&name=Karta do testów&desc=descryption tekst test&pos=top",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "idList",
+									"value": "64554ab015dc5d3b31b322d3"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "name",
+									"value": "Karta do testów"
+								},
+								{
+									"key": "desc",
+									"value": "descryption tekst test"
+								},
+								{
+									"key": "pos",
+									"value": "top"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a picture to card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "url",
+									"value": "https://paczaizm.pl/content/wp-content/uploads/bazur-piesel.jpg",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64514ad7cf5af852d53973c6/attachments?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64514ad7cf5af852d53973c6",
+								"attachments"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64554b3c2170d859b6d3270d?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64554b3c2170d859b6d3270d"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Card from Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{BasicURL}}/1/boards/64554a3d05977a2841c70e55/cards?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								"64554a3d05977a2841c70e55",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Karta test 4\",\r\n    \"desc\": \"description test 4\",\r\n    \"cover\": {\r\n        \"size\": \"normal\",\r\n        \"brightness\": \"light\",\r\n        \"color\": \"blue\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.trello.com/1/cards/64514ad7cf5af852d53973c6/?key={{key}}&token={{token}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"trello",
+								"com"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64514ad7cf5af852d53973c6",
+								""
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "color",
+									"value": "yellow",
+									"disabled": true
+								},
+								{
+									"key": "brightness",
+									"value": "dark",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Karta test 2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64514ad7cf5af852d53973c6?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64514ad7cf5af852d53973c6"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMENTS",
+			"item": [
+				{
+					"name": "Add a comment to Card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64554b3c2170d859b6d3270d/actions/comments?text=Testowy komentarz na karcie&key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64554b3c2170d859b6d3270d",
+								"actions",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "Testowy komentarz na karcie"
+								},
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64554b3c2170d859b6d3270d/actions?key={{key}}&token={{token}}&filter=commentCard",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64554b3c2170d859b6d3270d",
+								"actions"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								},
+								{
+									"key": "filter",
+									"value": "commentCard"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Testowy komentarz na karcie (zaktualizowany)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64554b3c2170d859b6d3270d/actions/64554b927f9403dc9d3ffdb7/comments?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64554b3c2170d859b6d3270d",
+								"actions",
+								"64554b927f9403dc9d3ffdb7",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BasicURL}}/1/cards/64554b3c2170d859b6d3270d/actions/64554b927f9403dc9d3ffdb7/comments?key={{key}}&token={{token}}",
+							"host": [
+								"{{BasicURL}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								"64554b3c2170d859b6d3270d",
+								"actions",
+								"64554b927f9403dc9d3ffdb7",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{key}}"
+								},
+								{
+									"key": "token",
+									"value": "{{token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
