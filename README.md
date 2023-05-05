@@ -1,6 +1,6 @@
 # **Zakrest testów REST API aplikacji Trello przu użyciu programu Postman**
 ---
-### **Testy obejmują wszystkie podstwowe funkcjonalności bez który aplikacja byłaby nieużyteczna. Plus testy bezpieczństwa**
+### **Testy obejmują wszystkie podstwowe funkcjonalności bez których aplikacja byłaby nieużyteczna. Plus testy bezpieczństwa**
 
 **1. Autoryzacja - Sprawdzenie czy przy wysłaniu podstawowego zapytania jest wymagana autoryzacja API key i API token**
 
